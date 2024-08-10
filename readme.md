@@ -1,40 +1,63 @@
 # Variable scoping 
-Variable scope se murad woh hadood (boundaries) hain jin mein ek variable access kiya ja sakta hai ya use kiya ja sakta hai. Ek program ke andar, variable scope ye tay karta hai ke ek variable kis code block mein valid hai aur kis block mein nahi.
+JavaScript mein bhi variable scope ka concept hota hai, jo define karta hai ke ek variable program ke kis hissay mein accessible hai. JavaScript mein primarily do types ke scope hote hain: 
 
-Variable scope do tareeqon ka hota hai:
+1. **Global Scope**
+2. **Local Scope (Function Scope aur Block Scope)**
 
-1. **Local Scope (Mahdood Halqa):**
-   - Local scope ka matlab ye hai ke ek variable sirf us block ya function ke andar hi access kiya ja sakta hai jahan usay declare kiya gaya hai.
-   - Jab aap ek variable ko kisi function ya block ke andar declare karte hain, to usay local variable kehte hain.
-   - Example:
+### 1. Global Scope
+- Agar koi variable function ke bahar declare kiya jaye, to woh global scope mein hota hai. Matlab, woh poore program mein kahin bhi accessible hota hai.
+- Example:
 
-     ```python
-     def my_function():
-         x = 10  # Local variable
-         print(x)  # Yeh 'x' sirf is function ke andar accessible hai
+    ```javascript
+    var x = 10;  // Global scope
 
-     my_function()
-     print(x)  # Error: 'x' is not defined outside the function
-     ```
+    function myFunction() {
+        console.log(x);  // 10
+    }
 
-2. **Global Scope (Aam Halqa):**
-   - Global scope ka matlab ye hai ke ek variable poore program mein kahin bhi access kiya ja sakta hai.
-   - Jab aap ek variable ko function ya block ke bahar declare karte hain, to usay global variable kehte hain.
-   - Example:
+    myFunction();
+    console.log(x);  // 10
+    ```
 
-     ```python
-     x = 10  # Global variable
+### 2. Local Scope
+Local scope further do qisam ka hota hai:
 
-     def my_function():
-         print(x)  # Yeh 'x' function ke andar bhi accessible hai
+- **Function Scope**
+- **Block Scope**
 
-     my_function()
-     print(x)  # Yeh 'x' function ke bahar bhi accessible hai
-     ```
+#### Function Scope
+- JavaScript mein, agar koi variable kisi function ke andar declare kiya jaye using `var`, to woh sirf us function ke andar hi accessible hota hai. Isay function scope kehte hain.
+- Example:
+
+    ```javascript
+    function myFunction() {
+        var y = 20;  // Function scope
+        console.log(y);  // 20
+    }
+
+    myFunction();
+    console.log(y);  // Error: y is not defined
+    ```
+
+#### Block Scope
+- ES6 (ECMAScript 2015) ke baad se, JavaScript mein `let` aur `const` keywords ko introduce kiya gaya jo block scope ko follow karte hain. Block scope ka matlab ye hai ke ek variable sirf us block ke andar accessible hota hai jismein usay declare kiya gaya hai. Block ko curly braces `{}` ke saath define kiya jata hai.
+- Example:
+
+    ```javascript
+    if (true) {
+        let z = 30;  // Block scope
+        console.log(z);  // 30
+    }
+
+    console.log(z);  // Error: z is not defined
+    ```
 
 ### Summary
-- **Local Scope**: Variable sirf function/block ke andar accessible hota hai.
-- **Global Scope**: Variable poore program mein accessible hota hai.
+- **Global Scope**: Variable poore program mein kahin bhi accessible hota hai. (e.g., `var x = 10;`)
+- **Function Scope**: `var` se declare kiya gaya variable sirf us function ke andar accessible hota hai.
+- **Block Scope**: `let` aur `const` se declare kiya gaya variable sirf us block ke andar accessible hota hai.
+
+JavaScript mein scope ko samajhna is liye zaroori hai taake aap variables ko effectively manage kar sakein aur unintended bugs se bacha sakein.
 
 # Clouser
 Closure aik programming concept hai jo JavaScript jaisi languages mein use hota hai. Ye tab banta hai jab aik function doosre function ke andar banaya jata hai, aur andar wala function bahar wale function ke variables ko use kar sakta hai, chahe bahar wala function khatam bhi ho chuka ho.
